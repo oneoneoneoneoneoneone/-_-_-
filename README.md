@@ -30,6 +30,33 @@
 </div>
 </details>
 
+<details>
+<summary>자동 페이징</summary>
+<div markdown="1">
+
+- scrollViewWillBeginDragging(), scrollViewDidEndDecelerating()에서 타이머 컨트롤
+~~~swift
+    private func startTimer(){
+        guard timer == nil else {return}
+        
+        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true, block: {_ in
+            self.collectionViewToNextCell()
+        })
+    }
+    
+    private func stopTimer(){
+        timer?.invalidate()
+        timer = nil
+    }
+    
+    private func collectionViewToNextCell(){
+        self.collectionView.setContentOffset(.init(x: self.collectionView.contentOffset.x + self.cellWidth, y: self.collectionView.contentOffset.y), animated: true)
+    }
+~~~
+
+</div>
+</details>
+
 </br>
 
 ## _HomeViewController.swift
