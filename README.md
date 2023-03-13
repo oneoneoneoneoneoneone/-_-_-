@@ -3,8 +3,7 @@
 
 ![Mar-13-2023 14-36-27](https://user-images.githubusercontent.com/94464179/224616704-805d5dff-59a5-4935-8ad3-fed299f57935.gif)
 
-
-
+</br></br>
 
 ## HomeViewController.swift
 - 콜렉션뷰의 numberOfItems를 Int.Max로 잡고 유효한 페이지 숫자를 계산해서 보여줌.
