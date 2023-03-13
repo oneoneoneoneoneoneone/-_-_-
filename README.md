@@ -12,6 +12,7 @@
 <summary>페이징될 때 셀 이미지 고정된 것처럼 보이기</summary>
 <div markdown="1">
 
+- page가 넘어갈 때, imageView.frame.origin.x값의 범위는 -cell.width ~ 0
 ~~~swift
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if collectionView.visibleCells.count > 0{
@@ -34,21 +35,19 @@
 <summary>자동 페이징</summary>
 <div markdown="1">
 
-- scrollViewWillBeginDragging(), scrollViewDidEndDecelerating()에서 타이머 컨트롤
+- 사용자가 스크롤을 시작하면 timer를 멈추고, 스크롤이 끝나면 timer 시작
 ~~~swift
-    private func startTimer(){
-        guard timer == nil else {return}
-        
-        timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true, block: {_ in
-            self.collectionViewToNextCell()
-        })
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        stopTimer()
     }
     
-    private func stopTimer(){
-        timer?.invalidate()
-        timer = nil
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        startTimer()
     }
+~~~
     
+- 타이머 실행 블록에서 호출하는 메소드
+~~~swift
     private func collectionViewToNextCell(){
         self.collectionView.setContentOffset(.init(x: self.collectionView.contentOffset.x + self.cellWidth, y: self.collectionView.contentOffset.y), animated: true)
     }
