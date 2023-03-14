@@ -48,8 +48,7 @@
     
 - 타이머 실행 블록에서 호출하는 코드
 ~~~swift
-    self.collectionView.setContentOffset(.init(x: self.collectionView.contentOffset.x + self.cellWidth, y: self.collectionView.contentOffset.y)) 
-    
+    self.collectionView.setContentOffset(.init(x: self.collectionView.contentOffset.x + self.cellWidth, y: self.collectionView.contentOffset.y), animated: true)
 ~~~
 
 </div>
